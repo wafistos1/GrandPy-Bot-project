@@ -10,7 +10,7 @@
 <body>
   <div id="list_section">
       <ul>
-        <li id="question_gp"><div><img src='../static/images/papy.png\' width="50px" ></div><div class="item">Bonjour  mon petit !  veux-tu me dire quelque chose ?</div></li>
+        <li id="question_gp"><div><img src='{{url_for("static", filename="images/papy.png")}}' width="50px" ></div><div class="item">Bonjour  mon petit !  veux-tu me dire quelque chose ?</div></li>
       </ul>
       <form id="question">
         <input type="text" id="text-id" placeholder="Poser une question a papy "/>
