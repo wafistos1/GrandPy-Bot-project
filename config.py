@@ -16,7 +16,7 @@ def touver_place(chaine):
 # a function that looks for the location of an address and return it
 def search(place):
     reponse_question = {}
-    KEY_API = ''
+    KEY_API = 'AIzaSyBh_Oj3Rj_gosxQUQxEzeYE95DbixLTZ8g'
     api_search = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
     payload = {
         'input': place,

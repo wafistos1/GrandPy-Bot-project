@@ -28,7 +28,7 @@ $(function() {
 				$list.append('<li id = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div>Tu cherche '  + response_nom + " ??</div></li>");
 				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div>E ben je crois qu\"elle se trouve: ' + response_adresse + "</div></li>");
 				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> Bon la je vais te dire que cette endroit qui est ' + response_texte + "</div></li>");
-				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> la je te laisse ce lien  ' + response_photo + "</div></li>");
+				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> la je te laisse ce lien  ' + `<img src=" ${response_photo}" + "</div></li>");
 			}
 			else{			
 			$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> ' + response_texte + "</div></li>");
