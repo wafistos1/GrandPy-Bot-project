@@ -1,3 +1,5 @@
+# les reponse eventuelles
+
 LISTE_MOT_CLES_NON_TROUVE = [
     "Peut-tu repeter ta question stp!! la j'ai les oreille boucher  ",
     "J'ai pas bien compris ta question !! reformule la stp !!  ",
