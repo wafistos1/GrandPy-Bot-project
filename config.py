@@ -30,6 +30,7 @@ def search(place):
         Json_data['candidates'][0]['name']
     except(IndexError):
         reponse_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)  # Cas Corp pas de mot cle trouver
+        print('Aucun corespondance au mot cle')
         return reponse_question
     nom = Json_data['candidates'][0]['name']
     adresse = Json_data['candidates'][0]['formatted_address']
