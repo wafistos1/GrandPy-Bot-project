@@ -34,8 +34,8 @@ def search(place):
         return reponse_question
     nom = Json_data['candidates'][0]['name']
     adresse = Json_data['candidates'][0]['formatted_address']
-    photo = Json_data['candidates'][0]['photos'][0]['html_attributions'][0]
-
+    photo = Json_data['candidates'][0]['geometry']['location']
+    print(photo)
     reponse_question['nom'] = nom
     reponse_question['adresse'] = adresse
     reponse_question['photo'] = photo

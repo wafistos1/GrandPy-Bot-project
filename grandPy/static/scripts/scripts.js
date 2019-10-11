@@ -1,48 +1,52 @@
 
 
-$(function() {
-	
-	var $list, $newItemForm;
-	
-	$list = $('ul');
-	$newItemForm = $('#question');
-	
-	$newItemForm.on('submit', function(e) {
-	  e.preventDefault();
-	  var text = $('input:text').val();
-	  add_text = '<li><div id="user">' + text + "</div><div><img src='../static/images/ask.png' width=\"50px\" ></div></li>"
-	  $list.append(add_text);
-	  $('input:text').val();
-	  $.ajax({
-		url: '/process',
-		type: 'POST',
-		dataType: 'application/json',
-		data: {text: text},
-		dataType: 'json',
-		success: function(response) {
-			
+    function newMessage() {
+		var message = $(".message-input input").val();
+
+		if($.trim(message) == '') {
+		  return false;
+		}
+		$('<li class="sent"><img src="../static/images/ask.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+		$('.message-input input').val(null);
+		$('<li class="replies" id ="loader"><img src="../static/images/loader.gif" alt="" width="1000"</li>').appendTo($('.messages ul'));
+
+		$.ajax({
+		  url: '/process',
+		  type: 'POST',
+		  dataType: 'application/json',
+		  data: {text: message},
+		  dataType: 'json',
+		  success: function(response) {
+			$('#loader').remove();
+			$(".messages ul").animate({ scrollTop: $(document).height() }, "fast");
+			$(".replies").animate({ scrollTop: $(document).height() }, "fast");
 			var response_nom = response.nom;
 			var response_adresse = response.adresse;
-			var response_photo = response.photo;
 			var response_texte = response.texte;
 			if (response_nom != undefined){
-				$list.append('<li id = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div>Si tu cherche '  + response_nom + " ??</div></li>");
-				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div>Ben je crois qu\'elle se trouve: ' + response_adresse + "</div></li>");
-				$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> Oh mon enfant!! cet endroit qui est: ' + response_texte + "</div></li>");
+				
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_nom + '</p></li>').appendTo($('.messages ul'));
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_adresse + '</p></li>').appendTo($('.messages ul'));
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
+			$(`<li> <iframe width="425" height="250"frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBh_Oj3Rj_gosxQUQxEzeYE95DbixLTZ8g&q=${response_nom}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
+
 			}
-			else{			
-			$list.append('<li = "rep"><div><img src=\'../static/images/papy.png\' width=\"50px\" ></div><div> ' + response_texte + "</div></li>");
+			else{	
+						
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
+			  
+		$(".messages").animate({ scrollTop: $(document).height() }, "fast");
 			}
-		}
-		});
-
-		
-	});
-
+		  }
+		  });
 
   
-  	});
+	  };
   
-
+	  $newItemForm = $('#message-input');
   
-
+  
+	  $newItemForm .on('submit', function(e) {
+		e.preventDefault();
+		newMessage();
+	  });

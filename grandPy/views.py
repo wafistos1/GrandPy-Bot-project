@@ -18,7 +18,7 @@ def register():
         question = request.form.get('text')
         
         data = chaine_formated(question)
-        print(json.dumps(data))
+        
 
         return json.dumps(data)
     else:
