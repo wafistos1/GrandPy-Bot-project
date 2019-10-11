@@ -3,7 +3,7 @@
 LISTE_MOT_CLES_NON_TROUVE = [
     "Peut-tu repeter ta question stp!! la j'ai les oreille boucher  ",
     "J'ai pas bien compris ta question !! reformule la stp !!  ",
-    "Es-que tu sur que tu peut me pose une vraie question stp!!"
+    "Es-que tu peut me pose une vraie question stp!!"
       ]
 LISTE_CORS_GOOGLE = [
     "Ah!!, je suis desole mais cette endroit ne me dit rien   ",

@@ -14,9 +14,7 @@ def index():
 def register():
     print(request.form)
     if request.form:
-        print(request.form.get('text'))
         question = request.form.get('text')
-        
         question = Processing(question)
         question.question_process()
         question.google_process()

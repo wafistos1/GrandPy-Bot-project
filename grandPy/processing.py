@@ -26,6 +26,11 @@ class Processing:
         for i in range(len(self.question) - 1):
             if self.question[i] in KEY_WORDS:
                 self.key_word = self.question[i + 1]
+            else:
+                self.answer_question['texte'] =  random.choice(LISTE_MOT_CLES_NON_TROUVE)
+                print('Aucun corespondance a un mot cle trouvee!!')       
+
+
 
     def google_process(self):
         """Method receives a keyword and then  search on google map to return the address of this place
@@ -39,28 +44,35 @@ class Processing:
             }
         Json_data = requests.get(api_search, params=payload).json()
         try:
-            Json_data['candidates'][0]['name']
+            nom = Json_data['candidates'][0]['name']
+            adresse = Json_data['candidates'][0]['formatted_address']
+            photo = Json_data['candidates'][0]['geometry']['location']
+            self.answer_question['nom'] = nom
+            self.answer_question['adresse'] = adresse
+            self.answer_question['photo'] = photo
         except IndexError as err:
-            self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
-            print(f"erreur: {err}")
+            if 'texte' not in self.answer_question:
+                self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)   # Cas Corp pas de mot cle trouve
+                print(f"erreur: {err}")
+            
+
             # Sortir directement de la methode //todo
-        nom = Json_data['candidates'][0]['name']
-        adresse = Json_data['candidates'][0]['formatted_address']
-        photo = Json_data['candidates'][0]['geometry']['location']
-        self.answer_question['nom'] = nom
-        self.answer_question['adresse'] = adresse
-        self.answer_question['photo'] = photo
-        print((lambda s: s.split(",")[0])(adresse))
+        
+
 
     def wiki_process(self):
         """A method that collects an address and then returns information about the address if it exists 
         """
         wikipedia.set_lang("fr")
+        
         try:
-            self.answer_question['texte'] = wikipedia.summary((lambda s: s.split(",")[0])(self.answer_question['adresse']), sentences=2)
-            return self.answer_question
+            if self.answer_question['nom']:
+                self.answer_question['texte'] = wikipedia.summary((lambda s: s.split(",")[0])(self.answer_question['adresse']), sentences=2)
+                return self.answer_question
         except:
-            self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)   # Cas Corp pas de mot cle trouve
-            print('Erreur: Aucun corespondance trouvee dans API WikiMedia.')
-            return self.answer_question
-
+            if 'texte' not in self.answer_question:
+                self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)   # Cas Corp pas de mot cle trouve
+                print('Erreur: Aucun corespondance trouvee dans API WikiMedia.')
+                return self.answer_question
+            else:
+                return self.answer_question
