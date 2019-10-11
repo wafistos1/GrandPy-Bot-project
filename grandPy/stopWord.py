@@ -89,4 +89,4 @@ DIC_STOPWORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleur
                'Est-ce',
                'la', 'de', 'l', 'le']
 
-KEY_WORDS = ['place', 'adresse', 'endroit', 'lieu'] = ['place', 'adresse', 'endroit', 'lieu']
+KEY_WORDS = ['place', 'adresse', 'endroit', 'lieu']

@@ -3,8 +3,9 @@ import wikipedia
 import requests
 import random
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
-from .stopWord import DIC_STOPWORDS, KEY_WORDS
 from .api_key import KEY_API_GOOGLE
+from .stopWord import DIC_STOPWORDS, KEY_WORDS
+
 
 class Processing:
     def __init__(self, question):
@@ -25,8 +26,7 @@ class Processing:
         for i in range(len(self.question) - 1):
             if self.question[i] in KEY_WORDS:
                 self.key_word = self.question[i + 1]
-                
-        
+
     def google_process(self):
         """Method receives a keyword and then  search on google map to return the address of this place
         """
@@ -41,7 +41,7 @@ class Processing:
         try:
             Json_data['candidates'][0]['name']
         except IndexError as err:
-            self.answer_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)
+            self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
             print(f"erreur: {err}")
             # Sortir directement de la methode //todo
         nom = Json_data['candidates'][0]['name']
@@ -50,14 +50,17 @@ class Processing:
         self.answer_question['nom'] = nom
         self.answer_question['adresse'] = adresse
         self.answer_question['photo'] = photo
-
+        print((lambda s: s.split(",")[0])(adresse))
 
     def wiki_process(self):
         """A method that collects an address and then returns information about the address if it exists 
         """
+        wikipedia.set_lang("fr")
         try:
-            self.answer_question['texte'] = wikipedia.summary((lambda s: s.split(",")[0])(adresse), sentences=2)
+            self.answer_question['texte'] = wikipedia.summary((lambda s: s.split(",")[0])(self.answer_question['adresse']), sentences=2)
+            return self.answer_question
         except:
             self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)   # Cas Corp pas de mot cle trouve
-            print('Aucun corespondance trouvee dans API WikiMedia.')
+            print('Erreur: Aucun corespondance trouvee dans API WikiMedia.')
+            return self.answer_question
 

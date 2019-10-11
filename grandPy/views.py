@@ -1,6 +1,6 @@
 #! /usr/bin/env python
-from flask import Response, Flask, render_template, flash, request ,url_for, jsonify, make_response
-from classes import Processing
+from flask import  Flask,  request, jsonify, render_template
+from .processing import Processing
 import json
 app = Flask(__name__)
 app.config.from_object('config')
@@ -19,8 +19,9 @@ def register():
         
         question = Processing(question)
         question.question_process()
-        question.wiki_process()
-        data = question.answer_question
+        question.google_process()
+        data = question.wiki_process()
+
         
 
         return json.dumps(data)
