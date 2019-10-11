@@ -1,6 +1,7 @@
 *.pyc
 __pycache__
 env/
+api_key.py
 app.db
 grandPy/tests/*.db
 geckodriver.log

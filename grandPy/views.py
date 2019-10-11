@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 from flask import Response, Flask, render_template, flash, request ,url_for, jsonify, make_response
-from config import chaine_formated
+from classes import Processing
 import json
 app = Flask(__name__)
 app.config.from_object('config')
@@ -17,7 +17,10 @@ def register():
         print(request.form.get('text'))
         question = request.form.get('text')
         
-        data = chaine_formated(question)
+        question = Processing(question)
+        question.question_process()
+        question.wiki_process()
+        data = question.answer_question
         
 
         return json.dumps(data)
