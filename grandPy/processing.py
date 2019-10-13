@@ -24,18 +24,21 @@ class Processing:
             if ele in self.question:
                 self.question.remove(ele)
         
-        for i in range(len(self.question) - 1):
+        for i, question in enumerate(self.question):
             if self.question[i] in KEY_WORDS:
                 try:
                     self.key_word = self.question[i+1] + ' ' + self.question[i+2]
                     print(f'Key Word: {self.key_word}')
+                    break
                 except IndexError:
-                    self.key_word = self.question[i+1]
-                    print(f'Key Word: {self.key_word}')
-
-                except:
-                    self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
-                    print('Aucun mot cle trouve')
+                    try:
+                        self.key_word = self.question[i+1]
+                        print(f'Key Word: {self.key_word}')
+                        break
+                    except:
+                        print(f'Mot de localisation : "{self.question[i]}" mais aucun destination')
+        if self.key_word == '':
+            self.answer_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)
 
     def google_process(self):
         """Method receives a keyword and then  search on google map to return the address of this place
