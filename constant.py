@@ -7,7 +7,7 @@ LISTE_MOT_CLES_NON_TROUVE = [
       ]
 LISTE_CORS_GOOGLE = [
     "Ah!!, je suis desole mais cette endroit ne me dit rien   ",
-    "Emm !!, j'ai oublier ou ce trouve cette endroit, desole  ",
+    "Emm !!, j'ai du oublier ou ce trouve cette endroit, desole  ",
     "Ola!!, la tu me pose une colle aucun idee!!"
 ]
 LISTE_SORS_WIKI = [

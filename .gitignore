@@ -1,6 +1,7 @@
 *.pyc
 __pycache__
 env/
+venv/
 api_key.py
 app.db
 grandPy/tests/*.db

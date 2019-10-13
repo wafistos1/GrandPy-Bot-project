@@ -3,8 +3,9 @@ import wikipedia
 import requests
 import random
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
-from .api_key import KEY_API_GOOGLE
+from  .api_key import KEY_API_GOOGLE
 from .stopWord import DIC_STOPWORDS, KEY_WORDS
+import sys
 
 
 class Processing:
@@ -25,12 +26,16 @@ class Processing:
         
         for i in range(len(self.question) - 1):
             if self.question[i] in KEY_WORDS:
-                self.key_word = self.question[i + 1]
-            else:
-                self.answer_question['texte'] =  random.choice(LISTE_MOT_CLES_NON_TROUVE)
-                print('Aucun corespondance a un mot cle trouvee!!')       
+                try:
+                    self.key_word = self.question[i+1] + ' ' + self.question[i+2]
+                    print(f'Key Word: {self.key_word}')
+                except IndexError:
+                    self.key_word = self.question[i+1]
+                    print(f'Key Word: {self.key_word}')
 
-
+                except:
+                    self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
+                    print('Aucun mot cle trouve')
 
     def google_process(self):
         """Method receives a keyword and then  search on google map to return the address of this place
@@ -53,12 +58,7 @@ class Processing:
         except IndexError as err:
             if 'texte' not in self.answer_question:
                 self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)   # Cas Corp pas de mot cle trouve
-                print(f"erreur: {err}")
-            
-
-            # Sortir directement de la methode //todo
-        
-
+                print(f'erreur: {err}')
 
     def wiki_process(self):
         """A method that collects an address and then returns information about the address if it exists 
