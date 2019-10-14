@@ -1,7 +1,7 @@
 
 #
 # Projet5 "Créez GrandPy Bot, le papy-robot"
-_
+
 
 
 ## Ce programme va créer un robot qui vous répondrait comme votre grand-père ! Si vous lui demandez l'adresse d'un lieu, il vous la donnera, certes, mais agrémentée d'un long récit très intéressant.
@@ -23,13 +23,6 @@ On a trois  listes de reponses:
 `LISTE_MOT_CLES_NON_TROUVE`: c'est quand le programme ne trouve pas de mot cle qui sont dans la liste `KEY_WORDS` du fichier `stopWord.py`
 `LISTE_CORS_GOOGLE`: c'est quand le programme ne trouve pas de corspondance on effectuant une recherche sur api google map
 `LISTE_SORS_WIKI`: c'est quand le programme ne trouve pas de corspondance on effectuant une recherche sur api WikiMedia.
-
-### Menu Update ma base de donnees
-
-- Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
-
-### Menu Quitter
-- L'utilisateur choisi de quitter le programme  
 
 ### Pré-requis
 

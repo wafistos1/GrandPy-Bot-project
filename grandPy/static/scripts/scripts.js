@@ -25,6 +25,7 @@
 			var response_texte = response.texte;
 			if (response_nom != undefined){
 				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
+				$(".map_google").animate({ scrollTop: $(document).height() }, "fast");
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_nom + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_adresse + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));

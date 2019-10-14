@@ -7,66 +7,60 @@
   
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
-  <link rel="stylesheet" class="cp-pen-styles" href="../static/css/costum.css">
+  <link rel="stylesheet" class="cp-pen-styles" href="{{ url_for('static', filename='css/costum.css')}}">
   <title class="GrandPy">GrandPy</title>
   
 </head>
 <body>
-    <div id="frame">
-      <div id="sidepanel">
-        <div id="profile">
-          <div class="wrap">
-            <img id="profile-img" src="../static/images/papy.png" class="online" alt="" />
-            <p>Papy Map Stories</p>
+    <div class="container">
+        <header class="row col-sm-12">
+            <div class="page-header">
+              <h1>Le papy qui</h1>
+            </div>
+        </header>
+      <div id="frame">
+        <div id="sidepanel">
+          <div id="profile">
+            <div class="wrap">
+              <img id="profile-img" src="{{ url_for('static', filename='images/papy.png')}}" class="online" alt="" />
+              <p>Papy Map Stories</p>
+            </div>
           </div>
+          
+      
+            <div class="map_google">
+              <ul id="map_google">
+      
+              </ul>
+            </div>
         </div>
-        
-
-          <div class="map_google">
-            <ul id="map_google">
-
+        <div class="content">
+          <div class="contact-profile">
+            <img src="{{ url_for('static', filename='images/papy.png')}}" alt="" />
+            <p>Papy qui raconte des histoires</p>
+          
+          </div>
+          <div class="messages" >
+            <ul>
+              
             </ul>
           </div>
-      </div>
-      <div class="content">
-        <div class="contact-profile">
-          <img src="../static/images/papy.png" alt="" />
-          <p>Papy qui raconte des histoires</p>
-       
-          <div class="social-media">
-              <a class="btn icon" href="https://www.facebook.com/mameri.wafi" target="_blank"><i class="fa fa-facebook" aria-hidden="true" ></i></a>
-              <a class="btn icon" href="https://github.com/wafistos1/Projet7" target="_blank"><i class="fa fa-GitHub" aria-hidden="true"></i></a>
-              <a class="btn icon" href="https://trello.com/b/gByrXXxQ/grandpy" target="_blank"><i class="fa fa-Trello" aria-hidden="true"></i></a>   
-          </div>
-        
-        </div>
-        <div class="messages" >
-          <ul>
-            
-          </ul>
-        </div>
-        <div class="message-input">
-          <div class="wrap">
-            <form id="message-input">
-          <input type="text" placeholder="Write your message..." />
-          <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-        </form>
+          <div class="message-input">
+            <div class="wrap">
+              <form id="message-input">
+            <input type="text" placeholder="Write your message..." />
+            <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+          </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="../static/scripts/scripts.js" ></script>
+    <script src="{{ url_for('static', filename='scripts/scripts.js')}}" ></script>
 
 </body>
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                
-            </div>
-        </div>
-    </div>
-</footer>
+
 
 </html>
+

@@ -1,11 +1,11 @@
+
 # Modul ......
 import wikipedia
 import requests
 import random
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
-from  .api_key import KEY_API_GOOGLE
+from .api_key import KEY_API_GOOGLE
 from .stopWord import DIC_STOPWORDS, KEY_WORDS
-import sys
 
 
 class Processing:
@@ -70,7 +70,8 @@ class Processing:
         
         try:
             if self.answer_question['nom']:
-                self.answer_question['texte'] = wikipedia.summary((lambda s: s.split(",")[0])(self.answer_question['adresse']), sentences=2)
+                self.answer_question['texte'] = wikipedia.summary(
+                    (lambda s: s.split(",")[0])(self.answer_question['adresse']), sentences=2)
                 return self.answer_question
         except:
             if 'texte' not in self.answer_question:

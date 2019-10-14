@@ -11,6 +11,7 @@ body {
     text-rendering: optimizeLegibility;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
     -webkit-font-smoothing: antialiased;
+    
   }
   
   #frame {
@@ -588,3 +589,15 @@ body {
     overflow-x: hidden;
     padding: 0.3;
   }
+.container
+{
+  position: relative;
+  height: 800px;
+  width: 1300px;
+
+}
+h1 {
+  text-shadow: 4px 4px 5px #777;
+  color: #449;
+}
+
