@@ -2,6 +2,7 @@
 __pycache__
 env/
 venv/
+WinEnv/
 api_key.py
 app.db
 grandPy/tests/*.db
