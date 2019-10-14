@@ -10,3 +10,5 @@ geckodriver.log
 .cache/
 instance/
 .webassets-cache
+.vscode/
+.idea/
