@@ -12,3 +12,5 @@ instance/
 .webassets-cache
 .vscode/
 .idea/
+.coverage
+htmlcov/

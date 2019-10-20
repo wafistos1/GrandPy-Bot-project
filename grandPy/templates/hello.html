@@ -1,7 +1,7 @@
 
 
 
-<!DOCTYPE html><html class=''>
+<!DOCTYPE html><html class='Pybot'>
 <head>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
   
@@ -13,11 +13,14 @@
 </head>
 <body>
     <div class="container">
-        <header class="row col-sm-12">
-            <div class="page-header">
-              <h1>Le papy qui</h1>
-            </div>
-        </header>
+
+        <div class="header-photo">
+          <div class="article">
+            <div class="title">GrandPy, le papy robot!! </div>
+            <br>
+            <p>Le papy qui raconte des histoires</p>
+          </div>
+        </div>
       <div id="frame">
         <div id="sidepanel">
           <div id="profile">
@@ -26,8 +29,6 @@
               <p>Papy Map Stories</p>
             </div>
           </div>
-          
-      
             <div class="map_google">
               <ul id="map_google">
       
@@ -55,11 +56,25 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <div class="header-photo">
+          
+            <ul class="footer">
+              <li><a href="#"> facebook</a></li>
+              <li><a href="#"> GitHub</a></li>
+              <li><a href="#"> Trello</a></li>
+              <li><a href="#"> Heroku</a></li>
+            </ul>
+
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/scripts.js')}}" ></script>
 
 </body>
+
+
 
 
 </html>

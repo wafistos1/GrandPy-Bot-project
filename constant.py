@@ -1,4 +1,4 @@
-# les reponses eventuelles
+# Module qui regroupe les listes des reponses eventuelles
 
 LISTE_MOT_CLES_NON_TROUVE = [
     "Peux-tu répéter ta question stp!!",

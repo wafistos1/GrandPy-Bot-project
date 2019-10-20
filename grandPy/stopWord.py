@@ -1,4 +1,4 @@
-# Module .....
+# Module qui regroupe une liste de stopwords et une liste des mots-cles
 
 
 DIC_STOPWORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleurs", "ainsi", "ait", "allaient",
@@ -87,6 +87,6 @@ DIC_STOPWORDS = ["a", "abord", "absolument", "afin", "ah", "ai", "aie", "ailleur
                "ça", "ès",
                "étaient", "étais", "était", "étant", "été", "être", "ô", "?", "le", "de", 'li', 'Salut', 'papy', '!',
                'Est-ce',
-               'la', 'de', 'l', 'le']
+               'la', 'de', 'l', 'le', 'du']
 
 KEY_WORDS = ['emplacement', 'localité', 'place', 'adresse', 'endroit', 'lieu']

@@ -1,0 +1,5 @@
+# Modul for API Key 'check the README file for more informations
+
+KEY_API_GOOGLE = Mettre la cle API ici
+
+# Apres renommer le fichier api_key.py.exemple --> api_key.py

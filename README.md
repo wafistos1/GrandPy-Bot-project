@@ -1,6 +1,6 @@
 
 #
-# Projet5 "Créez GrandPy Bot, le papy-robot"
+# Projet7 "Créez GrandPy Bot, le papy-robot"
 
 
 
@@ -15,7 +15,7 @@
 
 ### Partie recherche d'informations.
 
-- Pour la partie recherche d'informations le programme va s'appuier sur deux API (google map et WikiMedia).
+- Pour la partie recherche d'information le programme va s'appuie sur deux API (google map et WikiMedia).
 
 ### Les differentes reponses.
 On peut personnaliser les reponses envoye a l'utilisateur on ajoutant ou modifiant les phrases qui se trouves dans le fichier `constant.py`.

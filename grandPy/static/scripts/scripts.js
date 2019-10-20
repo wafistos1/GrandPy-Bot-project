@@ -24,17 +24,17 @@
 			var response_adresse = response.adresse;
 			var response_texte = response.texte;
 			if (response_nom != undefined){
-				$(".messages").animate({ scrollTop: $(document).height() }, "fast");
-				$(".map_google").animate({ scrollTop: $(document).height() }, "fast");
+			$('#google').remove();
+				$(".messages").animate({ scrollTop: $(document).height()*4 }, "fast");
+				$(".map_google").animate({ scrollTop: $(document).height()*4 }, "fast");
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_nom + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_adresse + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
-			$(`<li> <iframe width="425" height="250"frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBh_Oj3Rj_gosxQUQxEzeYE95DbixLTZ8g&q=${response_nom} + ${response_adresse}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
+			$(`<li> <iframe id="google" width="425" height="250"frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBh_Oj3Rj_gosxQUQxEzeYE95DbixLTZ8g&q=${response_nom} + ${response_adresse}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
 			
 
 			}
-			else{	
-						
+			else{		
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
 			  $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 

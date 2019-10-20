@@ -1,5 +1,5 @@
 
-# Modul ......
+# Module qui regroupe une classe Processing qui vas repondre a la question de l'utilisateur
 import wikipedia
 import requests
 import random
@@ -19,23 +19,21 @@ class Processing:
         """
         self.question = self.question.replace("'", " ")
         self.question = self.question.split(' ')
-
+        # Enleve les stopwords de la question
         for ele in DIC_STOPWORDS:
             if ele in self.question:
                 self.question.remove(ele)
-        
-        for i, question in enumerate(self.question):
+        # Chercher le mots cle puis trouver les mots nessaicere pour la recherch google
+        for i, quest in enumerate(self.question):
             if self.question[i] in KEY_WORDS:
                 try:
                     self.key_word = self.question[i+1] + ' ' + self.question[i+2]
                     print(f'Key Word: {self.key_word}')
-                    break
                 except IndexError:
                     try:
                         self.key_word = self.question[i+1]
                         print(f'Key Word: {self.key_word}')
-                        break
-                    except:
+                    except IndexError:
                         print(f'Mot de localisation : "{self.question[i]}" mais aucun destination')
         if self.key_word == '':
             self.answer_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)
@@ -51,16 +49,15 @@ class Processing:
             'key': KEY_API_GOOGLE,
             }
         Json_data = requests.get(api_search, params=payload).json()
+        print(Json_data)
         try:
             nom = Json_data['candidates'][0]['name']
             adresse = Json_data['candidates'][0]['formatted_address']
-            photo = Json_data['candidates'][0]['geometry']['location']
             self.answer_question['nom'] = nom
             self.answer_question['adresse'] = adresse
-            self.answer_question['photo'] = photo
         except IndexError as err:
             if 'texte' not in self.answer_question:
-                self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)   # Cas Corp pas de mot cle trouve
+                self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
                 print(f'erreur: {err}')
 
     def wiki_process(self):
@@ -75,7 +72,7 @@ class Processing:
                 return self.answer_question
         except:
             if 'texte' not in self.answer_question:
-                self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)   # Cas Corp pas de mot cle trouve
+                self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)
                 print('Erreur: Aucun corespondance trouvee dans API WikiMedia.')
                 return self.answer_question
             else:
