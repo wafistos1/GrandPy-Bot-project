@@ -49,7 +49,6 @@ class Processing:
             'key': KEY_API_GOOGLE,
             }
         Json_data = requests.get(api_search, params=payload).json()
-        print(Json_data)
         try:
             nom = Json_data['candidates'][0]['name']
             adresse = Json_data['candidates'][0]['formatted_address']
@@ -64,7 +63,6 @@ class Processing:
         """A method that collects an address and then returns information about the address if it exists 
         """
         wikipedia.set_lang("fr")
-        
         try:
             if self.answer_question['nom']:
                 self.answer_question['texte'] = wikipedia.summary(

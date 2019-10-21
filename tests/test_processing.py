@@ -1,15 +1,34 @@
 from grandPy.processing import Processing
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
 import unittest
-import urllib.request
+import requests
 import json
 from io import BytesIO
 from _pytest.monkeypatch import monkeypatch
+
 questions = {
 'no_key_word': "Salut GrandPy ! Est-ce que tu connais d'openclassrooms",
 'no_google': "Salut GrandPy ! Est-ce que tu connais l'adresse balsdfasdfsf",
 'no_wiki': "Salut GrandPy ! Est-ce que tu connais l'adresse du monument des martyres ?",
 'response':"Salut GrandPy ! Est-ce que tu connais l'adresse d'openclassrooms"
+}
+
+response_google = {
+    'candidates':[{
+    'formatted_address': '7 Cité Paradis, 75010 Paris, France', 
+    'geometry': {'location': {'lat': 48.8748465, 'lng': 2.3504873},
+    'viewport': {'northeast': {'lat': 48.87622362989272, 'lng': 2.351843679892722},
+        'southwest': {'lat': 48.87352397010727, 'lng': 2.349144020107278}}}, 
+    'name': 'OpenClassrooms', 
+    'opening_hours': {'open_now': True}, 
+    'photos': [{'height': 385, 'html_attributions':
+         ['<a href="https://maps.google.com/maps/contrib/110718279865691618892/photos">Openclassrooms</a>'],
+          'photo_reference': 'CmRaAAAAGNM0g-f2eFVxz1eUoWk8VVEHeg01uKmlt-iRyzORKINP63_A5DrDhDpC3RIcnGxRO3YOqVqXK5bpeMgH6nO0TSXETp5h1dq3FXGeEGN18FU7pa9Yi2p53jbvO2bGUP7ZEhAO1ou1FIhPFbMdyE5d0jVTGhTzOX8QHahS_81NKseUvPPHb8AHew',
+           'width': 385}], 'rating': 3.3}], 
+    'status': 'OK'
+    }
+response_wiki = {
+    'texte': 'La cité Paradis est une voie publique située dans le 10e arrondissement de Paris.== Situation et accès ==La cité Paradis est une voie publique située dans le 10e arrondissement de Paris.'
 }
 
 
@@ -21,35 +40,40 @@ def change_question(question):
     return data
 
 
-class TestProcessing(unittest.TestCase):
+class TestProcessing():
     
     def test_method_question_process_is_not_ok(self):
         data = change_question(questions['no_key_word'])
-        self.assertIn(data['texte'], LISTE_MOT_CLES_NON_TROUVE)
+        assert data['texte'] in LISTE_MOT_CLES_NON_TROUVE
 
     def test_method_google_process_is_not_ok(self):
         data = change_question(questions['no_google'])
-        self.assertIn(data['texte'], LISTE_CORS_GOOGLE)
+        assert data['texte'] in LISTE_CORS_GOOGLE
 
     def test_method_wiki_is_not_ok(self):
         data = change_question(questions['no_wiki'])
-        self.assertIn(data['texte'], LISTE_SORS_WIKI)
+        assert data['texte'] in LISTE_SORS_WIKI
     
-    def test_method_question_is_ok(self): # Utiliser le mock
+    def test_method_question_is_ok(self, monkeypatch):
         '''tester le mot cle dans la question '''
-        result = 'openclassrooms'
-        question = Processing(questions['response'])
-        mot = question.key_word
-        def mockreturn(request):
-            return result
-        monkeypatch.setattr(urllib.request, 'urlopen', mockreturn)
-        assert mot == result
-            
+        question_test = Processing(questions['response'])
+        question_test.question_process()
+        monkeypatch.setattr('requests.get', response_google)
+        assert question_test.key_word == 'openclassrooms'
     
-    def test_method_google_is_ok(self): #  Utiliser le mock
+    # test_data = question_test
+    # mock_get_map = response_google
+
+    def test_method_google_is_ok(self, monkeypatch): #  Utiliser le mock 
         '''tester si google api return la bonne reponse  '''
-        return ''
+        question_test = change_question(questions['response'])
+        monkeypatch.setattr('requests.get', response_google)
+        assert question_test['adresse'] == '7 Cité Paradis, 75010 Paris, France'
+        
     
-    def test_method_wiki_is_ok(self): #  Utiliser le mock
+    def test_method_wiki_is_ok(self, monkeypatch): #  Utiliser le mock
         '''tester si google api return la bonne reponse  '''
-        return ''
+        question_test = change_question(questions['response'])
+        question_test['texte'] = question_test['texte'].replace('\n', '')
+        monkeypatch.setattr('requests.get', response_wiki)
+        assert question_test['texte'] == response_wiki['texte']
