@@ -60,9 +60,6 @@ class TestProcessing():
         question_test.question_process()
         monkeypatch.setattr('requests.get', response_google)
         assert question_test.key_word == 'openclassrooms'
-    
-    # test_data = question_test
-    # mock_get_map = response_google
 
     def test_method_google_is_ok(self, monkeypatch): #  Utiliser le mock 
         '''tester si google api return la bonne reponse  '''

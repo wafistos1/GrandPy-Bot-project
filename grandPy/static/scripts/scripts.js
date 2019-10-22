@@ -30,7 +30,7 @@
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_nom + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_adresse + '</p></li>').appendTo($('.messages ul'));
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
-			$(`<li> <iframe id="google" width="425" height="250"frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD9K7IJKgj7MBggzpxrVIjsLn7H1qxdF34&q=${response_nom} + ${response_adresse}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
+			$(`<li> <iframe id="google" width="355" height="460"frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD9K7IJKgj7MBggzpxrVIjsLn7H1qxdF34&q=${response_nom} + ${response_adresse}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
 			
 
 			}
