@@ -54,6 +54,7 @@ class Processing:
             adresse = Json_data['candidates'][0]['formatted_address']
             self.answer_question['nom'] = nom
             self.answer_question['adresse'] = adresse
+            self.answer_question['map'] = "https://www.google.com/maps/embed/v1/place?key=AIzaSyD9K7IJKgj7MBggzpxrVIjsLn7H1qxdF34&q=$"+ nom + adresse
         except IndexError as err:
             if 'texte' not in self.answer_question:
                 self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
