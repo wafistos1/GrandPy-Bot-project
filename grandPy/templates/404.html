@@ -1,0 +1,10 @@
+
+{% extends "hello.html" %}
+{% block content %}
+<div class="header-photo">
+        <div class="title">Page Not Found</div>
+            <ul class="footer">
+                <li><a href="{{url_for('index')}}" style="text-decoration:none"> Click her to return index page</a></li>
+        </ul>
+</div>
+{% endblock %}

@@ -20,21 +20,19 @@
 			var response_nom = response.nom;
 			var response_adresse = response.adresse;
 			var response_texte = response.texte;
-			var response_texte = response.texte;
 			var response_map = response.map;
 			if (response_nom != undefined){
 			$('#google').remove();
 				$(".messages").animate({ scrollTop: $(document).height()*4 }, "fast");
 				$(".map_google").animate({ scrollTop: $(document).height()*4 }, "fast");
-			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_nom + '</p></li>').appendTo($('.messages ul'));
-			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_adresse + '</p></li>').appendTo($('.messages ul'));
-			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>Tu cherche ' + response_nom + '</p></li>').appendTo($('.messages ul'));
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>Bien sûr mon poussin ! La voici :' + response_adresse + '</p></li>').appendTo($('.messages ul'));
+			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>Mais t\'ai-je déjà raconté l\'histoire de cet endroit: ' + response_texte + '</p></li>').appendTo($('.messages ul'));
 			$(`<li> <iframe id="google" width="355" height="460"frameborder="0" src="${response_map}" allowfullscreen></iframe></li>`).appendTo($('.map_google ul'));
 			}
 			else{		
 			  $('<li class="replies"><img src="../static/images/papy.png" alt="" /><p>' + response_texte + '</p></li>').appendTo($('.messages ul'));
 			  $(".messages").animate({ scrollTop: $(document).height() }, "fast");
-
 			}
 		  }
 		  });

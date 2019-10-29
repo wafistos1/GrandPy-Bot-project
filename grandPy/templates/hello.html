@@ -2,18 +2,17 @@
 <html>
 <head>
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
-  
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
   <link rel="stylesheet" class="cp-pen-styles" href="{{ url_for('static', filename='css/costum.css')}}">
-  <title class="GrandPy">GrandPy</title>
-  
+  <title class="GrandPy">GrandPy</title> 
 </head>
 <body>
     <div class="container">
+        {% block content %}
         <div class="header-photo">
             <div class="title">GrandPy, le papy robot!! </div>
-        </div>
+        </div>    
       <div id="frame">
         <div id="sidepanel">
           <div id="profile">
@@ -42,13 +41,14 @@
           <div class="message-input">
             <div class="wrap">
               <form id="message-input">
-            <input type="text" placeholder="Write your message..." />
+            <input type="text" placeholder="Write your message..." />         
             <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
           </form>
             </div>
           </div>
         </div>
       </div>
+      {% endblock %}
       <br>
       <br>
       <div class="footer">         
@@ -62,11 +62,6 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='scripts/scripts.js')}}" ></script>
-
 </body>
-
-
-
-
 </html>
 

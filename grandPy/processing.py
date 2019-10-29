@@ -1,14 +1,18 @@
 
-# Module qui regroupe une classe Processing qui vas repondre a la question de l'utilisateur
+"""Module that contains Processing class that will answer the user's question
+"""
+import random
+import os
 import wikipedia
 import requests
-import random
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
-from .api_key import KEY_API_GOOGLE
 from .stopWord import DIC_STOPWORDS, KEY_WORDS
 
+KEY_API_GOOGLE = os.environ['KEY_API_GOOGLE']
 
 class Processing:
+    """Class that receives a string question and will return the address
+    """
     def __init__(self, question):
         self.question = question
         self.key_word = ''
@@ -34,12 +38,14 @@ class Processing:
                         self.key_word = self.question[i+1]
                         print(f'Key Word: {self.key_word}')
                     except IndexError:
-                        print(f'Mot de localisation : "{self.question[i]}" mais aucun destination')
+                        print(f'Mot de localisation trouvé : \
+                        "{self.question[i]}" mais aucun destination')
         if self.key_word == '':
             self.answer_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)
 
     def google_process(self):
-        """Method receives a keyword and then  search on google map to return the address of this place
+        """Method receives a keyword and then  search on google map to
+            return the address of this place
         """
         api_search = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?'
         payload = {
@@ -54,14 +60,16 @@ class Processing:
             adresse = Json_data['candidates'][0]['formatted_address']
             self.answer_question['nom'] = nom
             self.answer_question['adresse'] = adresse
-            self.answer_question['map'] = "https://www.google.com/maps/embed/v1/place?key=" + KEY_API_GOOGLE + "&q=$"+ nom + adresse
+            self.answer_question['map'] = "https://www.google.com/maps/embed/v1/place?key=" \
+            + KEY_API_GOOGLE + "&q=$"+ nom + adresse
         except IndexError as err:
             if 'texte' not in self.answer_question:
                 self.answer_question['texte'] = random.choice(LISTE_CORS_GOOGLE)
-                print(f'erreur: {err}')
+                print(f'erreur google ne trouve aucun corespandance: {err}')
 
     def wiki_process(self):
-        """A method that collects an address and then returns information about the address if it exists 
+        """A method that collects an address and then returns
+            information about the address if it exists
         """
         wikipedia.set_lang("fr")
         try:
@@ -74,5 +82,4 @@ class Processing:
                 self.answer_question['texte'] = random.choice(LISTE_SORS_WIKI)
                 print('Erreur: Aucun corespondance trouvee dans API WikiMedia.')
                 return self.answer_question
-            else:
-                return self.answer_question
+            return self.answer_question

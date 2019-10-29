@@ -21,10 +21,7 @@ response_google = {
         'southwest': {'lat': 48.87352397010727, 'lng': 2.349144020107278}}}, 
     'name': 'OpenClassrooms', 
     'opening_hours': {'open_now': True}, 
-    'photos': [{'height': 385, 'html_attributions':
-         ['<a href="https://maps.google.com/maps/contrib/110718279865691618892/photos">Openclassrooms</a>'],
-          'photo_reference': 'CmRaAAAAGNM0g-f2eFVxz1eUoWk8VVEHeg01uKmlt-iRyzORKINP63_A5DrDhDpC3RIcnGxRO3YOqVqXK5bpeMgH6nO0TSXETp5h1dq3FXGeEGN18FU7pa9Yi2p53jbvO2bGUP7ZEhAO1ou1FIhPFbMdyE5d0jVTGhTzOX8QHahS_81NKseUvPPHb8AHew',
-           'width': 385}], 'rating': 3.3}], 
+    'rating': 3.3}], 
     'status': 'OK'
     }
 response_wiki = {
@@ -40,7 +37,7 @@ def change_question(question):
     return data
 
 
-class TestProcessing():
+class Test_Processing():
     
     def test_method_question_process_is_not_ok(self):
         data = change_question(questions['no_key_word'])
@@ -59,7 +56,7 @@ class TestProcessing():
         question_test = Processing(questions['response'])
         question_test.question_process()
         monkeypatch.setattr('requests.get', response_google)
-        assert question_test.key_word == 'openclassrooms'
+        assert question_test.key_word == 'Openclassrooms'
 
     def test_method_google_is_ok(self, monkeypatch): #  Utiliser le mock 
         '''tester si google api return la bonne reponse  '''
