@@ -7,7 +7,6 @@ import wikipedia
 import requests
 from constant import LISTE_CORS_GOOGLE, LISTE_MOT_CLES_NON_TROUVE, LISTE_SORS_WIKI
 from .stopWord import DIC_STOPWORDS, KEY_WORDS
-
 KEY_API_GOOGLE = os.environ['KEY_API_GOOGLE']
 
 class Processing:
@@ -33,13 +32,14 @@ class Processing:
                 try:
                     self.key_word = self.question[i+1] + ' ' + self.question[i+2]
                     print(f'Key Word: {self.key_word}')
+                    break
                 except IndexError:
-                    try:
-                        self.key_word = self.question[i+1]
-                        print(f'Key Word: {self.key_word}')
-                    except IndexError:
-                        print(f'Mot de localisation trouvé : \
-                        "{self.question[i]}" mais aucun destination')
+                    pass
+                try:
+                    self.key_word = self.question[i+1]
+                    print(f'Key Word: {self.key_word}')
+                except IndexError:
+                    print(f'Mot de localisation trouvé : " {self.question[i]}" mais aucun destination')
         if self.key_word == '':
             self.answer_question['texte'] = random.choice(LISTE_MOT_CLES_NON_TROUVE)
 
