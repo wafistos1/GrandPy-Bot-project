@@ -4,25 +4,25 @@
 
 
 
-## Ce programme va créer un robot qui vous répondrait comme votre grand-père ! Si vous lui demandez l'adresse d'un lieu, il vous la donnera, certes, mais agrémentée d'un long récit très intéressant.
+## Ce programme est un chabot qui répond aux questions posées par l'utilisateur, il va simuler le rôle d'un grand-père qui va raconter une histoire autour d'un endroit, mais agrémentée d'un long récit très intéressant.
 
 ## Pour commencer
-- Ce programme ce compose des elements suivants
+- Ce programme se compose des éléments suivants
 
-### Partie Tchat
+### Partie Tchat(interaction avec l'utilisateur)
 
-- Le programme simule une discution avec une personne (grand-pere) pour trouver l'adresse d'un enplacement, l'utilisateur saisie une question et le programme(grand-pere) vas donner une reponse avec une images (google map) de l'adresse puis le programme va raconte (si existe) une petite histoire autour de l'adresse.    
+- Le programme simule une discussion avec une personne (grand-père) pour trouver l'adresse d'un emplacement(endroit, adresse), l'utilisateur saisi une question et le programme(grand-père) vas donner une réponse avec une image (google map) de l'adresse puis le programme va raconter (si existe) une petite histoire autour de l'adresse.    
 
-### Partie recherche d'informations.
+### Partie recherchent d'informations.
 
 - Pour la partie recherche d'information le programme va s'appuie sur deux API (google map et WikiMedia).
 
-### Les differentes reponses.
-On peut personnaliser les reponses envoye a l'utilisateur on ajoutant ou modifiant les phrases qui se trouves dans le fichier `constant.py`.
-On a trois  listes de reponses:
-`LISTE_MOT_CLES_NON_TROUVE`: c'est quand le programme ne trouve pas de mot cle qui sont dans la liste `KEY_WORDS` du fichier `stopWord.py`
-`LISTE_CORS_GOOGLE`: c'est quand le programme ne trouve pas de corspondance on effectuant une recherche sur api google map
-`LISTE_SORS_WIKI`: c'est quand le programme ne trouve pas de corspondance on effectuant une recherche sur api WikiMedia.
+### Les  différentes réponses.
+On peut personnaliser les réponses envoyées a l'utilisateur on ajoutant ou modifiant les phrases qui se trouvent dans le fichier `constant.py`.
+On a trois  listes de réponses:
+`LISTE_MOT_CLES_NON_TROUVE`: c'est quand le programme ne trouve pas de mot-clé qui sont dans la liste `KEY_WORDS` du fichier `stopWord.py`
+`LISTE_CORS_GOOGLE`: c'est quand le programme ne trouve pas de corrspondance on effectuant une recherche sur api google map
+`LISTE_SORS_WIKI`: c'est quand le programme ne trouve pas de corrspondance on effectuent une recherche sur api WikiMedia.
 
 ### Pré-requis
 
@@ -56,3 +56,5 @@ auteur(s) du projet
 
 _(https://github.com/wafistos1/Projet7 ``/GitHub``)_
 _(https://trello.com/b/gByrXXxQ/grandpy ``/Trello``)_
+_(https://grandpy1.herokuapp.com ``/Heroku``)_
+
